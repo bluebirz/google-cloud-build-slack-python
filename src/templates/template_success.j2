@@ -1,0 +1,57 @@
+{
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "🚨 Build Notification {{project_id}} 🚨",
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"fields": [
+				{
+					"type": "mrkdwn",
+					"text": "*Git repo:*\n`{{repo}}`{% if branch != None -%}(`{{branch}}`){%- endif %}"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Status:*\nsuccess ✅"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Service:*\n{{service_type}}"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Duration:*\n{{duration}}"
+				}
+			]
+		},
+    {
+			"type": "section",
+			"fields": [
+				{
+					"type": "mrkdwn",
+					"text": "*Deployment actor:*\n{{deployer}}"
+				}
+			]
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "View build",
+						"emoji": true
+					},
+					"url": "{{url}}",
+					"style": "primary"
+				}
+			]
+		}
+	]
+}

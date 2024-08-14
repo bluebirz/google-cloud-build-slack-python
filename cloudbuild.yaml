@@ -1,0 +1,26 @@
+steps:
+  - id: "Deploy"
+    name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["quality-security-checks"]
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud config set project $PROJECT_ID
+        cd ./src
+        pip3 install -r requirements.txt
+        gcloud functions deploy ${_SERVICE_TAG} \
+          --entry-point cloudbuild_notifications \
+          --gen2 \
+          --trigger-topic cloud-builds \
+          --region europe-west1 \
+          --serve-all-traffic-latest-revision \
+          --runtime python312 \
+          --retry \
+          --set-secrets="SLACK_URL=slack-webhook-url:latest" \
+          --timeout=540s \
+          --memory=2048MB
+    timeout: 1800s
+
+tags: ["${_TAG}", "build", "${_SERVICE_TAG}"]
+
