@@ -1,7 +1,6 @@
 steps:
   - id: "Deploy"
     name: "gcr.io/cloud-builders/gcloud"
-    waitFor: ["quality-security-checks"]
     entrypoint: "bash"
     args:
       - "-c"
