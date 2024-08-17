@@ -7,7 +7,7 @@ def get_status(payload: dict) -> bool | None:
 
 
 def get_repo(payload: dict) -> str:
-    return payload.get("substitutions", {}).get("_REPO_NAME")
+    return payload.get("substitutions", {}).get("REPO_NAME")
 
 
 def get_branch(payload: dict) -> str:

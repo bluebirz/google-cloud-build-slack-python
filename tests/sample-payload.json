@@ -1,37 +1,18 @@
 {
-  "id": "c9d74949-5e06-4fa5-8c1c-bde8158d2cc5",
-  "status": "SUCCESS",
+  "id": "05fde482-f5d0-46f2-b5e7-246055b83134",
+  "status": "FAILURE",
   "source": {
-    "storageSource": {
-      "bucket": "bluebirz-playground_cloudbuild",
-      "object": "source/1713902162.286611-de8d95f05dfe456eac2191a520d68b46.tgz",
-      "generation": "1713902252280229"
+    "gitSource": {
+      "url": "https://github.com/bluebirz/google-cloud-build-slack-python.git",
+      "revision": "92d973902c67d7541935d95ffd04b40f89b379b0"
     }
   },
-  "createTime": "2024-08-17T19:03:55.823048024Z",
-  "startTime": "2024-08-17T19:03:56.748223079Z",
-  "finishTime": "2024-08-17T19:10:18.646542Z",
+  "createTime": "2024-08-17T20:49:33.554559Z",
+  "startTime": "2024-08-17T20:49:34.260421349Z",
+  "finishTime": "2024-08-17T20:49:44.100476959Z",
   "results": {
-    "images": [
-      {
-        "name": "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07",
-        "digest": "sha256:3c217b3ab13be9acd598f35324b8db7f4a2b268d6f2ecaae95ae1aa174418308",
-        "pushTiming": {
-          "startTime": "2024-08-17T19:06:57.094523929Z",
-          "endTime": "2024-08-17T19:10:18.113676953Z"
-        }
-      },
-      {
-        "name": "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest",
-        "digest": "sha256:3c217b3ab13be9acd598f35324b8db7f4a2b268d6f2ecaae95ae1aa174418308",
-        "pushTiming": {
-          "startTime": "2024-08-17T19:06:57.094523929Z",
-          "endTime": "2024-08-17T19:10:18.113676953Z"
-        }
-      }
-    ],
     "buildStepImages": [
-      "sha256:e632a8ae0ab1da136a51f26b861cfdf565dfaeb78c1a73f129e837bd91babadb"
+      "sha256:14a7f8cd36292777cd6b4312bd94abde5c160bef901e9b72a4fa5cea96c93b79"
     ],
     "buildStepOutputs": [
       ""
@@ -39,74 +20,71 @@
   },
   "steps": [
     {
-      "name": "gcr.io/cloud-builders/docker",
+      "name": "gcr.io/cloud-builders/gcloud",
       "args": [
-        "build",
-        "--network",
-        "cloudbuild",
-        "--no-cache",
-        "-t",
-        "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest",
-        "."
+        "-c",
+        "gcloud config set project bluebirz-playground\ncd ./src\npip3 install -r requirements.txt\ngcloud functions deploy google-cloud-build-slack-python \\\n  --entry-point cloudbuild_notifications \\\n  --gen2 \\\n  --trigger-topic cloud-builds \\\n  --region europe-west1 \\\n  --serve-all-traffic-latest-revision \\\n  --runtime python312 \\\n  --retry \\\n  --set-secrets\u003d\"SLACK_URL\u003dslack-webhook-url:latest\" \\\n  --timeout\u003d540s \\\n  --memory\u003d2048MB\n"
       ],
+      "id": "Deploy",
+      "entrypoint": "bash",
       "timing": {
-        "startTime": "2024-08-17T19:04:11.344211656Z",
-        "endTime": "2024-08-17T19:06:57.066727279Z"
+        "startTime": "2024-08-17T20:49:38.016362751Z",
+        "endTime": "2024-08-17T20:49:43.462574351Z"
       },
-      "status": "SUCCESS",
+      "timeout": "1800s",
+      "status": "FAILURE",
       "pullTiming": {
-        "startTime": "2024-08-17T19:04:11.344211656Z",
-        "endTime": "2024-08-17T19:04:11.350322867Z"
-      }
+        "startTime": "2024-08-17T20:49:38.016362751Z",
+        "endTime": "2024-08-17T20:49:38.018828588Z"
+      },
+      "exitCode": 1
     }
   ],
   "timeout": "3600s",
-  "images": [
-    "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest"
-  ],
   "projectId": "bluebirz-playground",
   "logsBucket": "gs://1234.cloudbuild-logs.googleusercontent.com",
   "sourceProvenance": {
-    "resolvedStorageSource": {
-      "bucket": "bluebirz-playground_cloudbuild",
-      "object": "source/1713902162.286611-de8d95f05dfe456eac2191a520d68b46.tgz",
-      "generation": "1713902252280229"
-    },
-    "fileHashes": {
-      "gs://bluebirz-playground_cloudbuild/source/1234.286611-de8d95f05dfe456eac2191a520d68b46.tgz#1713902252280229": {
-        "fileHash": [
-          {
-            "type": "MD5",
-            "value": "Ab/8ZnkTqsU8yH9XBShXfw=="
-          }
-        ]
-      }
+    "resolvedGitSource": {
+      "url": "https://github.com/bluebirz/google-cloud-build-slack-python.git",
+      "revision": "92d973902c67d7541935d95ffd04b40f89b379b0"
     }
   },
+  "buildTriggerId": "3de3b70c-d1fb-465c-9ecf-979c2ecc4cc4",
   "options": {
+    "substitutionOption": "ALLOW_LOOSE",
     "logging": "LEGACY",
+    "dynamicSubstitutions": true,
     "pool": {}
   },
-  "logUrl": "https://console.cloud.google.com/cloud-build/builds/c9d74949-5e06-4fa5-8c1c-bde8158d2cc5?project\u1234",
+  "logUrl": "https://console.cloud.google.com/cloud-build/builds/05fde482-f5d0-46f2-b5e7-246055b83134?project\u003d1234",
+  "substitutions": {
+    "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
+    "REVISION_ID": "92d973902c67d7541935d95ffd04b40f89b379b0",
+    "REPO_FULL_NAME": "bluebirz/google-cloud-build-slack-python",
+    "TRIGGER_NAME": "google-cloud-build-slack-python",
+    "REPO_NAME": "google-cloud-build-slack-python",
+    "COMMIT_SHA": "92d973902c67d7541935d95ffd04b40f89b379b0",
+    "SHORT_SHA": "92d9739",
+    "BRANCH_NAME": "dev",
+    "REF_NAME": "dev"
+  },
+  "tags": [
+    "trigger-3de3b70c-d1fb-465c-9ecf-979c2ecc4cc4"
+  ],
   "timing": {
     "FETCHSOURCE": {
-      "startTime": "2024-08-17T19:03:57.385766552Z",
-      "endTime": "2024-08-17T19:04:10.708067268Z"
+      "startTime": "2024-08-17T20:49:35.987071964Z",
+      "endTime": "2024-08-17T20:49:37.417605951Z"
     },
     "BUILD": {
-      "startTime": "2024-08-17T19:04:10.708152110Z",
-      "endTime": "2024-08-17T19:06:57.094457641Z"
-    },
-    "PUSH": {
-      "startTime": "2024-08-17T19:06:57.094522701Z",
-      "endTime": "2024-08-17T19:10:18.113731271Z"
+      "startTime": "2024-08-17T20:49:37.417672134Z",
+      "endTime": "2024-08-17T20:49:43.462677397Z"
     }
   },
-  "artifacts": {
-    "images": [
-      "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest"
-    ]
-  },
   "queueTtl": "3600s",
-  "name": "projects/1234/locations/global/builds/c9d74949-5e06-4fa5-8c1c-bde8158d2cc5"
+  "name": "projects/1234/locations/global/builds/05fde482-f5d0-46f2-b5e7-246055b83134",
+  "failureInfo": {
+    "type": "USER_BUILD_STEP",
+    "detail": "Build step failure: build step 0 \"gcr.io/cloud-builders/gcloud\" failed: step exited with non-zero status: 1"
+  }
 }
