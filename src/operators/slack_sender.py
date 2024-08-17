@@ -10,3 +10,5 @@ def send_slack(url: str, message: str) -> None:
         json=message,
     )
     print(response.status_code, response.text)
+    if response.status_code != 200:
+        print(message)
