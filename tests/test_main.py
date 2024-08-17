@@ -7,7 +7,6 @@ from src.operators.component_extractors import (
     get_repo,
     get_status,
 )
-from src.main import create_message
 import unittest
 
 
@@ -38,9 +37,6 @@ class TestMessageExtraction(unittest.TestCase):
             get_build_url(self.mock_payload)
             == "https://console.cloud.google.com/cloud-build/builds/05fde482-f5d0-46f2-b5e7-246055b83134?project=1234"
         )
-
-    def test_create(self):
-        print(create_message(self.mock_payload))
 
 
 if __name__ == "__main__":
