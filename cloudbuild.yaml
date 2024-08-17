@@ -1,18 +1,12 @@
 steps:
-  - id: "Python upgrade pip"
-    name: "python"
-    entrypoint: "python"
-    args: ["-m", "pip", "install", "--upgrade", "pip"]
-
-  - id: "Python install requirements"
-    name: "python"
-    entrypoint: "python"
-    args: ["-m", "pip", "install", "-r", "requirements.txt"]
-
   - id: "Python unit test"
-    name: "python"
-    entrypoint: "python"
-    args: ["-m", "unittest", "tests/test_main.py"]
+    name: "bash"
+    script: |
+      #!/usr/bin/env bash
+      python -m pip install --upgrade pip
+      python -m pip install -r requirements.txt
+      cd workspace
+      python -m unittest test/test_main.py
 
   - id: "Deploy"
     name: "gcr.io/cloud-builders/gcloud"
