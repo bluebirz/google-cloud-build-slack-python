@@ -7,7 +7,7 @@ steps:
   - id: "Python install requirements"
     name: "python"
     entrypoint: "python"
-    args: ["-m", "pip", "install", "-r", "requirements.txt", "--user"]
+    args: ["-m", "pip", "install", "-r", "src/requirements.txt", "--user"]
 
   - id: "Python unit test"
     name: "python"
@@ -20,9 +20,6 @@ steps:
     args:
       - "-c"
       - |
-        gcloud config set project $PROJECT_ID
-        cd ./src
-        pip3 install -r requirements.txt
         gcloud functions deploy ${REPO_NAME} \
           --entry-point cloudbuild_notifications \
           --gen2 \
@@ -33,5 +30,5 @@ steps:
           --retry \
           --set-secrets="SLACK_URL=slack-webhook-url:latest" \
           --timeout=540s \
-          --memory=2048MB
+          --memory=512MB
     timeout: 1800s
