@@ -4,7 +4,7 @@
 			"type": "header",
 			"text": {
 				"type": "plain_text",
-				"text": "🚨 Build Notification {{project_id}} 🚨",
+				"text": "Build failed ❌",
 				"emoji": true
 			}
 		},
@@ -13,28 +13,19 @@
 			"fields": [
 				{
 					"type": "mrkdwn",
-					"text": "*Git repo:*\n`{{repo}}`{% if branch != None -%}(`{{branch}}`){%- endif %}"
+					"text": "*Git repo:*\n`{{repo}}`"
 				},
 				{
 					"type": "mrkdwn",
-					"text": "*Status:*\nfailed ❌"
+					"text": "*Branch:*\n`{{branch}}`"
 				},
 				{
 					"type": "mrkdwn",
-					"text": "*Service:*\n{{service_type}}"
+					"text": "*Project:*\n{{project_id}}"
 				},
 				{
 					"type": "mrkdwn",
 					"text": "*Duration:*\n{{duration}}"
-				}
-			]
-		},
-    {
-			"type": "section",
-			"fields": [
-				{
-					"type": "mrkdwn",
-					"text": "*Deployment actor:*\n{{deployer}}"
 				}
 			]
 		},

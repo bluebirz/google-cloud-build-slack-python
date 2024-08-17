@@ -20,6 +20,7 @@ steps:
     args:
       - "-c"
       - |
+        cd src/
         gcloud functions deploy ${REPO_NAME} \
           --entry-point cloudbuild_notifications \
           --gen2 \
