@@ -9,7 +9,7 @@ steps:
         gcloud config set project $PROJECT_ID
         cd ./src
         pip3 install -r requirements.txt
-        gcloud functions deploy ${_SERVICE_TAG} \
+        gcloud functions deploy ${REPO_NAME} \
           --entry-point cloudbuild_notifications \
           --gen2 \
           --trigger-topic cloud-builds \
@@ -21,6 +21,3 @@ steps:
           --timeout=540s \
           --memory=2048MB
     timeout: 1800s
-
-tags: ["${_TAG}", "build", "${_SERVICE_TAG}"]
-

@@ -1,0 +1,112 @@
+{
+  "id": "c9d74949-5e06-4fa5-8c1c-bde8158d2cc5",
+  "status": "SUCCESS",
+  "source": {
+    "storageSource": {
+      "bucket": "bluebirz-playground_cloudbuild",
+      "object": "source/1713902162.286611-de8d95f05dfe456eac2191a520d68b46.tgz",
+      "generation": "1713902252280229"
+    }
+  },
+  "createTime": "2024-08-17T19:03:55.823048024Z",
+  "startTime": "2024-08-17T19:03:56.748223079Z",
+  "finishTime": "2024-08-17T19:10:18.646542Z",
+  "results": {
+    "images": [
+      {
+        "name": "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07",
+        "digest": "sha256:3c217b3ab13be9acd598f35324b8db7f4a2b268d6f2ecaae95ae1aa174418308",
+        "pushTiming": {
+          "startTime": "2024-08-17T19:06:57.094523929Z",
+          "endTime": "2024-08-17T19:10:18.113676953Z"
+        }
+      },
+      {
+        "name": "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest",
+        "digest": "sha256:3c217b3ab13be9acd598f35324b8db7f4a2b268d6f2ecaae95ae1aa174418308",
+        "pushTiming": {
+          "startTime": "2024-08-17T19:06:57.094523929Z",
+          "endTime": "2024-08-17T19:10:18.113676953Z"
+        }
+      }
+    ],
+    "buildStepImages": [
+      "sha256:e632a8ae0ab1da136a51f26b861cfdf565dfaeb78c1a73f129e837bd91babadb"
+    ],
+    "buildStepOutputs": [
+      ""
+    ]
+  },
+  "steps": [
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "--network",
+        "cloudbuild",
+        "--no-cache",
+        "-t",
+        "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest",
+        "."
+      ],
+      "timing": {
+        "startTime": "2024-08-17T19:04:11.344211656Z",
+        "endTime": "2024-08-17T19:06:57.066727279Z"
+      },
+      "status": "SUCCESS",
+      "pullTiming": {
+        "startTime": "2024-08-17T19:04:11.344211656Z",
+        "endTime": "2024-08-17T19:04:11.350322867Z"
+      }
+    }
+  ],
+  "timeout": "3600s",
+  "images": [
+    "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest"
+  ],
+  "projectId": "bluebirz-playground",
+  "logsBucket": "gs://1234.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedStorageSource": {
+      "bucket": "bluebirz-playground_cloudbuild",
+      "object": "source/1713902162.286611-de8d95f05dfe456eac2191a520d68b46.tgz",
+      "generation": "1713902252280229"
+    },
+    "fileHashes": {
+      "gs://bluebirz-playground_cloudbuild/source/1234.286611-de8d95f05dfe456eac2191a520d68b46.tgz#1713902252280229": {
+        "fileHash": [
+          {
+            "type": "MD5",
+            "value": "Ab/8ZnkTqsU8yH9XBShXfw=="
+          }
+        ]
+      }
+    }
+  },
+  "options": {
+    "logging": "LEGACY",
+    "pool": {}
+  },
+  "logUrl": "https://console.cloud.google.com/cloud-build/builds/c9d74949-5e06-4fa5-8c1c-bde8158d2cc5?project\u1234",
+  "timing": {
+    "FETCHSOURCE": {
+      "startTime": "2024-08-17T19:03:57.385766552Z",
+      "endTime": "2024-08-17T19:04:10.708067268Z"
+    },
+    "BUILD": {
+      "startTime": "2024-08-17T19:04:10.708152110Z",
+      "endTime": "2024-08-17T19:06:57.094457641Z"
+    },
+    "PUSH": {
+      "startTime": "2024-08-17T19:06:57.094522701Z",
+      "endTime": "2024-08-17T19:10:18.113731271Z"
+    }
+  },
+  "artifacts": {
+    "images": [
+      "europe-west1-docker.pkg.dev/bluebirz-playground/sample-beam/07:latest"
+    ]
+  },
+  "queueTtl": "3600s",
+  "name": "projects/1234/locations/global/builds/c9d74949-5e06-4fa5-8c1c-bde8158d2cc5"
+}
