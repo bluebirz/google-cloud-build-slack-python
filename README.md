@@ -10,6 +10,20 @@ This is an application to listen to Google Cloud Build events (through pub/sub `
 - Google Secret Manager (id `slack-webhook-url`)
 - Slack API
 
+## Prerequisites
+
+- APIs
+  - [Eventarc API](https://console.developers.google.com/apis/api/eventarc.googleapis.com/overview)
+  - [Cloud Functions API](https://console.cloud.google.com/apis/api/cloudfunctions.googleapis.com/metrics)
+  - [Cloud Run Admin API](https://console.cloud.google.com/apis/api/run.googleapis.com/metrics) because Cloud Functions Gen 2 relies on Cloud Run
+- Cloud build service account has roles:
+  - Cloud Functions Developer
+  - Service Account User
+- Cloud Functions service account (or Compute Engine default service account) has roles:
+  - Secret Manager Secret Accessor
+- target folder must have `main.py`
+- [Slack webhook](https://api.slack.com/messaging/webhooks)
+
 ## Used Python packages
 
 - `Jinja2` for Slack message template

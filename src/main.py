@@ -26,9 +26,10 @@ def create_message(message: dict) -> str:
     template_file: str | None = STATUS_TEMPLATE_MAPPING.get(status)
 
     if template_file is None:
-        raise ValueError(
+        print(
             f"skip this status: {status}. Must be any of {STATUS_TEMPLATE_MAPPING.keys()}"
         )
+        return None
     with open(template_file, "r") as fptr:
         template: str = fptr.read()
 
@@ -49,4 +50,5 @@ def cloudbuild_notifications(event, context):
     slack_msg = create_message(
         message=message,
     )
-    send_slack(url=SLACK_URL, message=slack_msg)
+    if slack_msg is not None:
+        send_slack(url=SLACK_URL, message=slack_msg)
