@@ -2,15 +2,15 @@ from dateutil.parser import isoparse
 import human_readable
 
 
-def get_status(payload: dict) -> bool | None:
+def get_status(payload: dict) -> str | None:
     return payload.get("status")
 
 
-def get_repo(payload: dict) -> str:
+def get_repo(payload: dict) -> str | None:
     return payload.get("substitutions", {}).get("REPO_NAME")
 
 
-def get_branch(payload: dict) -> str:
+def get_branch(payload: dict) -> str | None:
     return payload.get("substitutions", {}).get("BRANCH_NAME")
 
 

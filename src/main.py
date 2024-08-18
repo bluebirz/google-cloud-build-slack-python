@@ -21,8 +21,8 @@ STATUS_TEMPLATE_MAPPING = {
 }
 
 
-def create_message(message: dict) -> str:
-    status: str = get_status(payload=message)
+def create_message(message: dict) -> str | None:
+    status: str | None = get_status(payload=message)
     template_file: str | None = STATUS_TEMPLATE_MAPPING.get(status)
 
     if template_file is None:
@@ -30,11 +30,17 @@ def create_message(message: dict) -> str:
             f"skip this status: {status}. Must be any of {STATUS_TEMPLATE_MAPPING.keys()}"
         )
         return None
+
+    repo: str | None = get_repo(payload=message)
+    if repo is None:
+        print("skip this. Repo not found")
+        return None
+
     with open(template_file, "r") as fptr:
         template: str = fptr.read()
 
     slack_payload: str = Template(template).render(
-        repo=get_repo(payload=message),
+        repo=repo,
         branch=get_branch(payload=message),
         project_id=get_project_id(payload=message),
         duration=get_duration(payload=message),
@@ -47,7 +53,7 @@ def cloudbuild_notifications(event, context):
     if SLACK_URL is None:
         raise ValueError("Require SLACK_URL")
     message: dict = json.loads(base64.b64decode(event.get("data")).decode("utf-8"))
-    slack_msg: str = create_message(
+    slack_msg: str | None = create_message(
         message=message,
     )
     if slack_msg is not None:
