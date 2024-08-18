@@ -21,27 +21,27 @@ This is an application to listen to Google Cloud Build events (through pub/sub `
   - Service Account User
 - Cloud Functions service account (or Compute Engine default service account) has roles:
   - Secret Manager Secret Accessor
-- target folder must have `main.py`
 - [Slack webhook](https://api.slack.com/messaging/webhooks)
+- Cloud Secret Manager:
+  - having key id `slack-webhook-url` with valid Slack webhook url
 
 ## Used Python packages
 
 - `Jinja2` for Slack message template
-- `Http` for calling Slack API
-- `re` for extracting pub/sub payload
-- `human_readable` for formating date time to human-readable format
+- `requests` to Slack webhook API
+- `human_readable` & `python-dateutil` for formating date time to human-readable format
 
 ## Sample Slack messages
 
 ### A build is successful
 
+![sample-success](./img/sample-success.png)
+
 ### A build is unsuccessful
 
-## Diagram
+![sample-failed](./img/sample-failed.png)
 
-![diagram](resources/img/diagram.png)
-<details>
-<summary>mermaid.js code</summary>
+## Diagram
 
 ```mermaid
 sequenceDiagram
@@ -60,5 +60,3 @@ sequenceDiagram
     gcf->>swh: post Slack messages
     swh->>sch: display messages
 ```
-
-</details>
