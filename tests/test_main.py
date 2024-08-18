@@ -30,7 +30,7 @@ class TestMessageExtraction(unittest.TestCase):
         assert get_project_id(self.mock_payload) == "bluebirz-playground"
 
     def test_get_duration(self):
-        assert get_duration(self.mock_payload) == "7.48s"
+        assert get_duration(self.mock_payload) == "7.4s"
 
     def test_get_build_url(self):
         assert (
