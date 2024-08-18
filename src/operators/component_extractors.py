@@ -15,7 +15,7 @@ def get_branch(payload: dict) -> str:
 
 
 def get_project_id(payload: dict) -> str | None:
-    return payload.get("projectId")
+    return payload.get("project_id")
 
 
 def get_duration(payload: dict) -> str:
