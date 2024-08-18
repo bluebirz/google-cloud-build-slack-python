@@ -27,21 +27,22 @@ This is an application to listen to Google Cloud Build events (through pub/sub `
 ## Used Python packages
 
 - `Jinja2` for Slack message template
-- `Http` for calling Slack API
-- `re` for extracting pub/sub payload
-- `human_readable` for formating date time to human-readable format
+- `requests` to Slack webhook API
+- `human_readable` & `python-dateutil` for formating date time to human-readable format
 
 ## Sample Slack messages
 
 ### A build is successful
 
+![sample-success](./img/sample-success.png)
+
 ### A build is unsuccessful
+
+![sample-failed](./img/sample-failed.png)
 
 ## Diagram
 
 ![diagram](resources/img/diagram.png)
-<details>
-<summary>mermaid.js code</summary>
 
 ```mermaid
 sequenceDiagram
@@ -60,5 +61,3 @@ sequenceDiagram
     gcf->>swh: post Slack messages
     swh->>sch: display messages
 ```
-
-</details>
