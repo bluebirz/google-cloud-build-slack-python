@@ -1,0 +1,90 @@
+{
+  "id": "05fde482-f5d0-46f2-b5e7-246055b83134",
+  "status": "FAILURE",
+  "source": {
+    "gitSource": {
+      "url": "https://github.com/bluebirz/google-cloud-build-slack-python.git",
+      "revision": "92d973902c67d7541935d95ffd04b40f89b379b0"
+    }
+  },
+  "createTime": "2024-08-17T20:49:33.554559Z",
+  "startTime": "2024-08-17T20:49:34.260421349Z",
+  "finishTime": "2024-08-17T20:49:44.100476959Z",
+  "results": {
+    "buildStepImages": [
+      "sha256:14a7f8cd36292777cd6b4312bd94abde5c160bef901e9b72a4fa5cea96c93b79"
+    ],
+    "buildStepOutputs": [
+      ""
+    ]
+  },
+  "steps": [
+    {
+      "name": "gcr.io/cloud-builders/gcloud",
+      "args": [
+        "-c",
+        "gcloud config set project bluebirz-playground\ncd ./src\npip3 install -r requirements.txt\ngcloud functions deploy google-cloud-build-slack-python \\\n  --entry-point cloudbuild_notifications \\\n  --gen2 \\\n  --trigger-topic cloud-builds \\\n  --region europe-west1 \\\n  --serve-all-traffic-latest-revision \\\n  --runtime python312 \\\n  --retry \\\n  --set-secrets\u003d\"SLACK_URL\u003dslack-webhook-url:latest\" \\\n  --timeout\u003d540s \\\n  --memory\u003d2048MB\n"
+      ],
+      "id": "Deploy",
+      "entrypoint": "bash",
+      "timing": {
+        "startTime": "2024-08-17T20:49:38.016362751Z",
+        "endTime": "2024-08-17T20:49:43.462574351Z"
+      },
+      "timeout": "1800s",
+      "status": "FAILURE",
+      "pullTiming": {
+        "startTime": "2024-08-17T20:49:38.016362751Z",
+        "endTime": "2024-08-17T20:49:38.018828588Z"
+      },
+      "exitCode": 1
+    }
+  ],
+  "timeout": "3600s",
+  "projectId": "bluebirz-playground",
+  "logsBucket": "gs://1234.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedGitSource": {
+      "url": "https://github.com/bluebirz/google-cloud-build-slack-python.git",
+      "revision": "92d973902c67d7541935d95ffd04b40f89b379b0"
+    }
+  },
+  "buildTriggerId": "3de3b70c-d1fb-465c-9ecf-979c2ecc4cc4",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY",
+    "dynamicSubstitutions": true,
+    "pool": {}
+  },
+  "logUrl": "https://console.cloud.google.com/cloud-build/builds/05fde482-f5d0-46f2-b5e7-246055b83134?project\u003d1234",
+  "substitutions": {
+    "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
+    "REVISION_ID": "92d973902c67d7541935d95ffd04b40f89b379b0",
+    "REPO_FULL_NAME": "bluebirz/google-cloud-build-slack-python",
+    "TRIGGER_NAME": "google-cloud-build-slack-python",
+    "REPO_NAME": "google-cloud-build-slack-python",
+    "COMMIT_SHA": "92d973902c67d7541935d95ffd04b40f89b379b0",
+    "SHORT_SHA": "92d9739",
+    "BRANCH_NAME": "dev",
+    "REF_NAME": "dev"
+  },
+  "tags": [
+    "trigger-3de3b70c-d1fb-465c-9ecf-979c2ecc4cc4"
+  ],
+  "timing": {
+    "FETCHSOURCE": {
+      "startTime": "2024-08-17T20:49:35.987071964Z",
+      "endTime": "2024-08-17T20:49:37.417605951Z"
+    },
+    "BUILD": {
+      "startTime": "2024-08-17T20:49:37.417672134Z",
+      "endTime": "2024-08-17T20:49:43.462677397Z"
+    }
+  },
+  "queueTtl": "3600s",
+  "name": "projects/1234/locations/global/builds/05fde482-f5d0-46f2-b5e7-246055b83134",
+  "failureInfo": {
+    "type": "USER_BUILD_STEP",
+    "detail": "Build step failure: build step 0 \"gcr.io/cloud-builders/gcloud\" failed: step exited with non-zero status: 1"
+  }
+}

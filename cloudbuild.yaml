@@ -1,0 +1,35 @@
+steps:
+  - id: "Python upgrade pip"
+    name: "python"
+    entrypoint: "python"
+    args: ["-m", "pip", "install", "--upgrade", "pip"]
+
+  - id: "Python install requirements"
+    name: "python"
+    entrypoint: "python"
+    args: ["-m", "pip", "install", "-r", "src/requirements.txt", "--user"]
+
+  - id: "Python unit test"
+    name: "python"
+    entrypoint: "python"
+    args: ["-m", "unittest", "tests/test_main.py"]
+
+  - id: "Deploy"
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        cd src/
+        gcloud functions deploy ${REPO_NAME} \
+          --entry-point cloudbuild_notifications \
+          --gen2 \
+          --trigger-topic cloud-builds \
+          --region europe-west1 \
+          --serve-all-traffic-latest-revision \
+          --runtime python312 \
+          --retry \
+          --set-secrets="SLACK_URL=slack-webhook-url:latest" \
+          --timeout=540s \
+          --memory=512MB
+    timeout: 1800s

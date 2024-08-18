@@ -1,0 +1,48 @@
+{
+	"blocks": [
+		{
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "Build success ✅",
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"fields": [
+				{
+					"type": "mrkdwn",
+					"text": "*Git repo:*\n`{{repo}}`"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Branch:*\n`{{branch}}`"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Project:*\n{{project_id}}"
+				},
+				{
+					"type": "mrkdwn",
+					"text": "*Duration:*\n{{duration}}"
+				}
+			]
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "View build",
+						"emoji": true
+					},
+					"url": "{{url}}",
+					"style": "primary"
+				}
+			]
+		}
+	]
+}
