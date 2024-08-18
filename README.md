@@ -42,8 +42,6 @@ This is an application to listen to Google Cloud Build events (through pub/sub `
 
 ## Diagram
 
-![diagram](resources/img/diagram.png)
-
 ```mermaid
 sequenceDiagram
     participant gcb as Google<br>Cloud Build
