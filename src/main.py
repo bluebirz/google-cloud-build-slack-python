@@ -46,8 +46,8 @@ def create_message(message: dict) -> str:
 def cloudbuild_notifications(event, context):
     if SLACK_URL is None:
         raise ValueError("Require SLACK_URL")
-    message = json.loads(base64.b64decode(event.get("data")).decode("utf-8"))
-    slack_msg = create_message(
+    message: dict = json.loads(base64.b64decode(event.get("data")).decode("utf-8"))
+    slack_msg: str = create_message(
         message=message,
     )
     if slack_msg is not None:
