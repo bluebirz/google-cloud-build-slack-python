@@ -2,6 +2,11 @@
 
 This is an application to listen to Google Cloud Build events (through pub/sub `cloud-builds`) and send Slack notifications, indicating whether the build is successful or failed.  
 
+## Blog related
+
+- [Blog] [Slack me what you build](https://bluebirz.net/posts/slack-me-what-you-build/)
+- [Medium] [Slack me what you build](https://medium.com/@bluebirz/slack-me-what-you-build-c5f06dd370c2)
+
 ## Services involved
 
 - Google Cloud Build
